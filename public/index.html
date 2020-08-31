@@ -5,10 +5,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.5.24/vuetify.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.5.24/vuetify.min.css"
-      rel="stylesheet"
-    />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -82,6 +78,7 @@
                         <v-checkbox
                           v-if="!todo.done"
                           v-model="todo.done"
+                          @change="completeTodo(todo.id)"
                           :dark="isDark"
                         ></v-checkbox>
                       </v-list-tile-action>
@@ -90,7 +87,8 @@
                           {{todo.title | capitalize}}
                         </v-list-tile-title>
                         <v-list-tile-sub-title>
-                          Добавлено в: {{todo.date | date}}
+                          Добавлено в: {{todo.createdAt | date(true)}} (изменено
+                          {{todo.updatedAt | date(true)}})
                         </v-list-tile-sub-title>
                       </v-list-tile-content>
                       <v-btn
